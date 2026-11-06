@@ -2,12 +2,13 @@
 
 Replace placeholders with confirmed values. Use explicit repository and org targets; do not assume CLI defaults are the correct environment. These examples come from `recipes/inspecting-state.md` and `recipes/request-logs.md` in the companion manual.
 
+Use existing local refs only; they may be stale. Have the human fetch if needed, or inspect current remote state through read-only APIs. Do not run a fetch or create a simulation checkout yourself.
+
 ## Git and GitHub
 
 ```bash
 git status --short
 git remote -v
-git fetch origin
 gh pr view <PR> --repo <owner/repo> --json state,baseRefName,headRefName,headRefOid,mergeable,mergeStateStatus,statusCheckRollup
 git diff --stat origin/<target> origin/<source>
 git diff origin/<source> origin/<prepared-WI> -- <affected-files>
@@ -15,7 +16,7 @@ git log --graph --oneline origin/<target> origin/<source> -20
 git merge-base origin/<target> origin/<source>
 ```
 
-A content diff or old merge-base is not proof of a conflict. Inspect GitHub's mergeability and conflicting files or simulate the merge in an isolated checkout. `UNKNOWN` can be transient; recheck after computation. Inspect failing checks even when they are not required: a prepared PR that is not `CLEAN` blocked Next in Exp 14.
+A content diff or old merge-base is not proof of a conflict. Inspect GitHub's mergeability and conflicting files or recommend that the human simulate the merge in an isolated checkout. `UNKNOWN` can be transient; recheck after computation. Inspect failing checks even when they are not required: a prepared PR that is not `CLEAN` blocked Next in Exp 14.
 
 Compare the actual affected files against the intended source version after Prepare/Combine. A provenance check can accept *historical* source-stage content, including an obsolete version (Exp 10).
 
@@ -41,4 +42,4 @@ sf data query -o <target-alias> --use-tooling-api --json \
   -q "SELECT Name, Body, LastModifiedDate FROM ApexClass WHERE Name='MyClass'"
 ```
 
-For other metadata, retrieve only affected components into a separate local Salesforce project and compare with the final PR. Retrieval writes local files: avoid overwriting the working source. Modification timestamps are supporting evidence, not deployment audit logs. Inspect the deployment report for the components and tests actually processed. Redact credentials and identifying org details from shared reports.
+For other metadata, ask the human to retrieve only affected components into a separate local Salesforce project and provide the result for comparison with the final PR. Do not run retrieval yourself: it writes local files. Modification timestamps are supporting evidence, not deployment audit logs. Inspect the deployment report for the components and tests actually processed. Redact credentials and identifying org details from shared reports.

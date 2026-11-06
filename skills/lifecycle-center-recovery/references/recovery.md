@@ -1,5 +1,7 @@
 # Recovery routes
 
+**Human action — do not execute.** Every state-changing procedure below is a recommendation for the human operator. The agent may inspect existing evidence and explain these steps, but must not run them, including Git operations, validation/tests, deployments, or Lifecycle Center actions. This boundary applies to every route and alternative below.
+
 Evidence IDs refer to `experiments/NN-*.md` in the lab and `lab/NN-*.md` in the MkDocs manual. The guide paths below are relative to that manual's content root. These are observed lab results unless identified as hypotheses. Adapt roles and validate behavior in the current pipeline; the lab did not test a four-environment topology.
 
 ## Work item conflicts with the first stage

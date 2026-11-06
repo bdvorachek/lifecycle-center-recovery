@@ -1,4 +1,4 @@
 interface:
   display_name: "Lifecycle Center Recovery"
-  short_description: "Diagnose and recover stuck Salesforce promotions"
-  default_prompt: "Use $lifecycle-center-recovery to diagnose this stuck promotion, identify a scoped recovery, and verify the deployed result."
+  short_description: "Read-only diagnosis and human-run recovery guidance"
+  default_prompt: "Use $lifecycle-center-recovery to diagnose this stuck promotion, recommend a scoped recovery for a human to execute; do not modify any repository or Salesforce org."

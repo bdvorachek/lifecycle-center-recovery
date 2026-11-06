@@ -1,6 +1,8 @@
 # Pipeline recovery agent skill
 
-Use the **Lifecycle Center Recovery** skill to help an agent diagnose a stuck promotion, choose a recovery that preserves your release scope, and verify what actually reached the target org.
+Use the **Lifecycle Center Recovery** skill to help an agent diagnose a stuck promotion, recommend a recovery that preserves your release scope, and inspect evidence of what actually reached the target org.
+
+**Advisory only:** the agent must not modify repository state or any Salesforce org. It provides commands and UI instructions for a human to execute. This includes leaving Git operations such as fetch, all promotions/deployments, Prepare, Combine, Back Sync, and test or workflow execution to the human. The agent reads existing evidence and results.
 
 [Download the skill ZIP](downloads/lifecycle-center-recovery.zip)
 
@@ -16,7 +18,7 @@ Example request:
 Use $lifecycle-center-recovery to diagnose our blocked Staging → Production
 promotion. Inspect the stage PR and request logs. The invoice work must stay
 in Staging. Identify a recovery that preserves the tested source version;
-start with diagnosis and a proposed repair, without deploying.
+provide diagnosis and human-run repair steps only. Do not execute changes.
 ```
 
 For a broken custom promotion:
@@ -27,7 +29,7 @@ tests fail even though Staging passes. Compare the prepared PR with Staging
 and identify where the manual resolution was lost.
 ```
 
-Provide the repository/PR and relevant environment roles when available. The skill uses the connected tools or CLI access your agent already has; it does not configure Salesforce or GitHub authentication. Installing it does not grant permission to deploy or change your pipeline.
+Provide the repository/PR and relevant environment roles when available. The skill uses the connected tools or CLI access your agent already has; it does not configure Salesforce or GitHub authentication. The skill does not provide an agent-executed repair mode; all state-changing steps are performed by a human.
 
 ## What it knows
 

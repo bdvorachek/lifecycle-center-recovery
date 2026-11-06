@@ -1,0 +1,6 @@
+.venv/
+site-build/
+.publish/
+docs/downloads/*.zip
+__pycache__/
+*.pyc

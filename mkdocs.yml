@@ -1,0 +1,75 @@
+site_url: https://bdvorachek.github.io/lifecycle-center-recovery/
+site_name: "Lifecycle Center: Promotion Mechanics"
+site_description: How Salesforce Lifecycle Center uses Git, and how to get unstuck when promotions conflict.
+docs_dir: docs
+site_dir: site-build
+hooks:
+  - hooks/package_skill.py
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.footer
+    - content.code.copy
+    - search.highlight
+  palette:
+    - scheme: default
+      toggle: {icon: material/brightness-7, name: Dark mode}
+    - scheme: slate
+      toggle: {icon: material/brightness-4, name: Light mode}
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - tables
+  - toc:
+      permalink: true
+nav:
+  - Home: index.md
+  - Understand a promotion:
+      - Promotion paths and scope: how-it-works/promotions.md
+      - The Git model: how-it-works/git-model.md
+      - Work items and statuses: how-it-works/work-items.md
+      - Combining work items: how-it-works/combining.md
+  - Troubleshoot a promotion:
+      - Where conflicts show up: conflicts/where-conflicts-show-up.md
+      - Work item vs. stage conflict: conflicts/work-item-conflict.md
+      - "Stage conflict recovery": conflicts/stuck-after-combine.md
+      - Test failures from combined work items: conflicts/test-failures.md
+      - Recovery options: conflicts/when-you-need-git.md
+  - Agent skill: agent-skill.md
+  - Checks and reference:
+      - GitHub branch protection: guardrails/branch-protection.md
+      - "Check file versions against Staging history": guardrails/staging-provenance.md
+      - Inspecting pipeline state: recipes/inspecting-state.md
+      - Request logs: recipes/request-logs.md
+      - Detailed recovery comparison: conflicts/recovery-matrix.md
+  - Lab notebook:
+      - How we tested: lab/index.md
+      - Experiment logs:
+          - "Exp 01: Same-lines conflict": lab/01-same-lines-conflict.md
+          - "Exp 02: Stage promotion after combine": lab/02-stage-promotion-after-combine.md
+          - "Exp 03: Branch protection gate": lab/03-e5-branch-protection-gate.md
+          - "Exp 04: Staging provenance check": lab/04-g1-staging-provenance-check.md
+          - "Exp 05: What triggers the combine dialog": lab/05-b3c-combine-dialog-trigger.md
+          - "Exp 06: Fix a stuck stage with a Git merge": lab/06-a3b-git-merge-recovery.md
+          - "Exp 07: Never, Back Sync and redo": lab/07-b8-never-and-redo.md
+          - "Exp 08: Stuck stage with the work item in Staging": lab/08-c3-stuck-stage-promoted-wi.md
+          - "Exp 09: Fix C with two stuck work items": lab/09-c3d-fix-c-two-stuck-wis.md
+          - "Exp 10: Silent rollback": lab/10-c3e-silent-regression.md
+          - "Exp 11: Recover from the silent rollback": lab/11-c3f-recover-silent-rollback.md
+          - "Exp 12: Clear the split-history trap": lab/12-c3b-heal-split-history.md
+          - "Exp 13: Combined test failure": lab/13-e1-combined-test-failure.md
+          - "Exp 14: Fix a broken combine without Promote Stage": lab/14-e6-fix-broken-combine.md
+          - "Exp 15: Git fix for a broken combine": lab/15-e6a-git-fix-for-broken-combine.md
+          - "Exp 16: Revert pending work, then Promote Stage": lab/16-e6b-revert-pending-then-promote-stage.md
+          - "Exp 17: Revert a pending new component": lab/17-e6c-revert-added-component.md
+          - "Exp 18: All changes and deletions": lab/18-e6d-all-changes-and-deletions.md
+          - "Exp 19: Direct commit on staging": lab/19-d1ab-direct-commit-on-staging.md
+          - "Exp 20: Commit on a prepared branch": lab/20-d1c-commit-on-prepared-branch.md
+          - "Exp 21: Custom promotion without overlap": lab/21-c1-custom-promotion-independent.md
+      - Open questions: lab/open-questions.md
